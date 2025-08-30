@@ -1,0 +1,19 @@
+:root {
+  --bg: #f8f9fb;
+  --fg: #1a1a1a;
+  --primary: #4a90e2;
+  --border: #e0e0e0;
+  --card-bg: #fff;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.app {
+  display: flex;
+  height: 100vh;
+}
