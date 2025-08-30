@@ -35,12 +35,10 @@ export function RelatedGroupsView() {
     if (!newGroupName.trim()) return;
     const groupId = addRelatedGroup(newGroupName.trim(), selectedWords);
 
-    // Añadir palabra nueva al grupo si existen inputs
     if (newWordOriginal.trim() && newWordEnglish.trim()) {
       addWordToGroup(newWordOriginal.trim(), newWordEnglish.trim(), [groupId]);
     }
 
-    // Limpiar formulario
     setNewGroupName("");
     setSelectedWords([]);
     setNewWordOriginal("");
@@ -52,7 +50,6 @@ export function RelatedGroupsView() {
     <section className="p-4 space-y-6">
       <h2 className="text-3xl font-bold border-b pb-2 mb-4">Groups of words</h2>
 
-      {/* Botón para mostrar formulario */}
       {!showForm && (
         <button
           className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
@@ -62,10 +59,8 @@ export function RelatedGroupsView() {
         </button>
       )}
 
-      {/* Formulario para crear grupo */}
       {showForm && (
         <div className="flex flex-col gap-4 p-4 border border-gray-300 rounded-lg bg-gray-50">
-          {/* Nombre del grupo */}
           <input
             className="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
             placeholder="Group name"
@@ -73,7 +68,6 @@ export function RelatedGroupsView() {
             onChange={(e) => setNewGroupName(e.target.value)}
           />
 
-          {/* Selección de palabras existentes */}
           <input
             type="text"
             placeholder="Search existing words..."
@@ -101,7 +95,6 @@ export function RelatedGroupsView() {
             ))}
           </div>
 
-          {/* Añadir palabra nueva */}
           <div className="flex flex-col sm:flex-row gap-3">
             <input
               className="flex-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
@@ -117,7 +110,6 @@ export function RelatedGroupsView() {
             />
           </div>
 
-          {/* Botón de guardar grupo */}
           <div className="flex gap-2 justify-between">
             <button
               className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
@@ -135,7 +127,6 @@ export function RelatedGroupsView() {
         </div>
       )}
 
-      {/* Lista de grupos existentes */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
         {related.map((g) => (
           <article

@@ -32,7 +32,6 @@ export function DictionaryView() {
             key={w.id}
             className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow"
           >
-            {/* Fila título + traducción */}
             <div className="flex flex-wrap gap-2 items-center mb-2">
               <h3 className="text-lg font-semibold text-gray-800 m-0">
                 {w.original}
@@ -42,12 +41,10 @@ export function DictionaryView() {
               </span>
             </div>
 
-            {/* Descripción */}
             {w.description && (
               <p className="text-gray-500 text-sm mb-2">{w.description}</p>
             )}
 
-            {/* Ejemplos */}
             {w.examples?.length ? (
               <ul className="list-disc list-inside text-gray-600 text-sm ml-2">
                 {w.examples.map((ex, i) => (

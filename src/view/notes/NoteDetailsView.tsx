@@ -1,9 +1,18 @@
+import { useState } from "react";
 import { AddWordForm } from "../../components/AddWordForm";
 import { useAppStore } from "../../store/store";
 
 export function NoteDetailView({ noteId }: { noteId: string }) {
   const { notes, selectNote } = useAppStore();
   const note = notes.find((n) => n.id === noteId);
+
+  const [query, setQuery] = useState("");
+
+  const filtered = note?.vocab.filter(
+    (w) =>
+      w.original.toLowerCase().includes(query.toLowerCase()) ||
+      w.english.toLowerCase().includes(query.toLowerCase())
+  );
 
   if (!note) return <p>Nota no encontrada</p>;
 
@@ -19,7 +28,14 @@ export function NoteDetailView({ noteId }: { noteId: string }) {
       <div className="mt-4 flex flex-col gap-4">
         <AddWordForm noteId={note.id} />
 
-        {note.vocab.map((w) => (
+        <input
+          className="p-2 w-full rounded-lg"
+          placeholder="Buscar palabra…"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+
+        {filtered?.map((w) => (
           <div
             key={w.id}
             className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow"
@@ -34,12 +50,10 @@ export function NoteDetailView({ noteId }: { noteId: string }) {
               </span>
             </div>
 
-            {/* Descripción */}
             {w.description && (
               <p className="text-gray-500 mt-2 text-sm">{w.description}</p>
             )}
 
-            {/* Ejemplos */}
             {w.examples?.length ? (
               <ul className="list-disc list-inside mt-2 ml-4 text-gray-600 text-sm">
                 {w.examples.map((ex, i) => (

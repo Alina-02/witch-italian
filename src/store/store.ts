@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { AppData, Note, RelatedGroup, VocabWord } from "../types";
+import { Note, RelatedGroup, VocabWord } from "../types";
 
 // store.ts
 type View = "notes" | "dictionary" | "related";
@@ -15,13 +15,12 @@ export interface AppState {
   addWord: (noteId: string, word: VocabWord) => void;
   selectNote: (id?: string) => void;
 
-  // Nuevas funciones
-  addRelatedGroup: (title: string, wordIds?: string[]) => string; // retorna id del grupo
+  addRelatedGroup: (title: string, wordIds?: string[]) => string;
   addWordToGroup: (
     original: string,
     english: string,
     groupIds: string[]
-  ) => string; // retorna id de la palabra creada
+  ) => string;
 
   save: () => void;
   load: () => Promise<void>;
@@ -51,7 +50,6 @@ export const useAppStore = create<AppState>((set, get) => ({
 
   selectNote: (id) => set({ selectedNoteId: id }),
 
-  // 🌟 Nueva función para crear un grupo
   addRelatedGroup: (title, wordIds = []) => {
     const newGroup: RelatedGroup = {
       id: crypto.randomUUID(),
@@ -63,18 +61,15 @@ export const useAppStore = create<AppState>((set, get) => ({
     return newGroup.id;
   },
 
-  // 🌟 Nueva función para añadir palabra nueva y opcionalmente asociarla a grupos
   addWordToGroup: (original, english, groupIds) => {
     const wordId = crypto.randomUUID();
     const newWord: VocabWord = { id: wordId, original, english };
 
-    // Añadir a la primera nota por defecto si quieres persistirla allí
     if (get().notes.length > 0) {
       const firstNoteId = get().notes[0].id;
       get().addWord(firstNoteId, newWord);
     }
 
-    // Añadir a los grupos indicados
     set((state) => ({
       related: state.related.map((g) =>
         groupIds.includes(g.id) ? { ...g, words: [...g.words, wordId] } : g
