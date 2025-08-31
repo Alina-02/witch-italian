@@ -23,13 +23,13 @@ export function NoteDetailView({ noteId }: { noteId: string }) {
         className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
         onClick={() => selectNote(undefined)}
       >
-        ⬅️ Volver
+        Volver
       </button>
       <div className="mt-4 flex flex-col gap-4">
         <AddWordForm noteId={note.id} />
 
         <input
-          className="p-2 w-full rounded-lg"
+          className="p-2 w-full rounded-lg color-black"
           placeholder="Buscar palabra…"
           value={query}
           onChange={(e) => setQuery(e.target.value)}

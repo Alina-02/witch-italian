@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@theme {
+  --color-plum: #8c3a87;
+  --color-american-purple: #3f1859;
+  --color-space-cadet: #1a2159;
+  --color-iguana-green: #6dc288;
+  --color-moonstone: #36aebc;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",

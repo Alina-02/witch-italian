@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAppStore } from "../store/store";
+import { IGUANA_GREEN, MOONSTONE, PLUM } from "../styles/colors";
 
 export function RelatedGroupsView() {
   const { related, notes, addRelatedGroup, addWordToGroup } = useAppStore();
@@ -47,20 +48,26 @@ export function RelatedGroupsView() {
   };
 
   return (
-    <section className="p-4 space-y-6">
-      <h2 className="text-3xl font-bold border-b pb-2 mb-4">Groups of words</h2>
+    <section className="space-y-6">
+      <h2
+        className="text-4xl font-bold pb-3 border-b-2 mb-3 mt-10"
+        style={{ borderColor: `${PLUM}` }}
+      >
+        Groups of words
+      </h2>
 
       {!showForm && (
         <button
-          className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+          className=" hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-full shadow"
+          style={{ background: `${MOONSTONE}`, border: `${IGUANA_GREEN}` }}
           onClick={() => setShowForm(true)}
         >
-          ➕ Add new group
+          Add new group
         </button>
       )}
 
       {showForm && (
-        <div className="flex flex-col gap-4 p-4 border border-gray-300 rounded-lg bg-gray-50">
+        <div className="color-black flex flex-col gap-4 p-4 border border-gray-300 rounded-lg bg-gray-50">
           <input
             className="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
             placeholder="Group name"
@@ -97,13 +104,13 @@ export function RelatedGroupsView() {
 
           <div className="flex flex-col sm:flex-row gap-3">
             <input
-              className="flex-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+              className=" color-black flex-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
               placeholder="New word original"
               value={newWordOriginal}
               onChange={(e) => setNewWordOriginal(e.target.value)}
             />
             <input
-              className="flex-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+              className="color-black flex-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
               placeholder="New word English"
               value={newWordEnglish}
               onChange={(e) => setNewWordEnglish(e.target.value)}

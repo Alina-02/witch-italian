@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { useAppStore } from "../store/store";
+import { PLUM } from "../styles/colors";
 
 export function DictionaryView() {
   const { notes } = useAppStore();
@@ -14,11 +15,16 @@ export function DictionaryView() {
 
   return (
     <section className="space-y">
-      <h2 className="text-4xl font-bold pb-3 border-b-2 mb-3">Dictionary</h2>
+      <h2
+        className="text-4xl font-bold pb-3 border-b-2 mb-3 mt-10"
+        style={{ borderColor: `${PLUM}` }}
+      >
+        Dictionary
+      </h2>
 
-      <div className="flex flex-row gap-2 items-center justify-center">
+      <div className="flex flex-row gap-2 items-center justify-center py-4">
         <input
-          className="p-2"
+          className="px-4 py-2 rounded-full color-black"
           placeholder="Buscar palabra…"
           value={query}
           onChange={(e) => setQuery(e.target.value)}

@@ -1,5 +1,11 @@
 import { useState } from "react";
 import { useAppStore } from "../../store/store";
+import {
+  IGUANA_GREEN,
+  MOONSTONE,
+  PLUM,
+  SPACE_CADET,
+} from "../../styles/colors";
 
 export function NotesListView() {
   const { notes, addNote, selectNote } = useAppStore();
@@ -15,22 +21,28 @@ export function NotesListView() {
 
   return (
     <section className="space-y">
-      <h2 className="text-4xl font-bold pb-3 border-b-2 mb-3">Notes</h2>
+      <h2
+        className="text-4xl font-bold pb-3 border-b-2 mb-3 mt-10"
+        style={{ borderColor: `${PLUM}` }}
+      >
+        Notes
+      </h2>
 
-      <div className="row" style={{ gap: "12px", alignItems: "center" }}>
+      <div className="row gap-[12px] items-center w-full py-4">
         {!creating && (
           <button
-            className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+            className=" hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-full shadow"
+            style={{ background: `${MOONSTONE}`, border: `${IGUANA_GREEN}` }}
             onClick={() => setCreating(true)}
           >
-            ➕ Nueva nota
+            Nueva nota
           </button>
         )}
 
         {creating && (
-          <div className="flex row" style={{ gap: "8px" }}>
+          <div className="flex row gap-4">
             <input
-              className="p-2"
+              className="p-3 rounded-full text-black"
               placeholder="Título de la nota"
               value={newTitle}
               onChange={(e) => setNewTitle(e.target.value)}
@@ -44,16 +56,18 @@ export function NotesListView() {
               autoFocus
             />
             <button
-              className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+              className=" hover:bg-gray-100 text-gray-800 font-semibold py-2 px-5 border border-gray-400 rounded-full shadow"
+              style={{ background: `${MOONSTONE}`, border: `${IGUANA_GREEN}` }}
               onClick={handleCreate}
             >
-              ✔️ Añadir
+              Añadir
             </button>
             <button
-              className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+              className=" hover:bg-gray-100 text-gray-800 font-semibold py-2 px-5 border border-gray-400 rounded-full shadow"
+              style={{ background: `${MOONSTONE}`, border: `${IGUANA_GREEN}` }}
               onClick={() => setCreating(false)}
             >
-              ❌ Cancelar
+              Cancelar
             </button>
           </div>
         )}

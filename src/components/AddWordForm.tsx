@@ -30,25 +30,25 @@ export function AddWordForm({ noteId }: { noteId: string }) {
     <>
       <div className="flex flex-wrap gap-3 mb-1">
         <input
-          className="flex-1 min-w-[200px] p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="color-black flex-1 min-w-[200px] p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
           placeholder="Palabra original"
           value={original}
           onChange={(e) => setOriginal(e.target.value)}
         />
         <input
-          className="flex-1 min-w-[200px] p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="color-black flex-1 min-w-[200px] p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
           placeholder="Traducción al inglés"
           value={english}
           onChange={(e) => setEnglish(e.target.value)}
         />
         <textarea
-          className="flex-1 min-w-[200px] p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 resize-y"
+          className="color-black flex-1 min-w-[200px] p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 resize-y"
           placeholder="Descripción (opcional)"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
         <input
-          className="flex-1 min-w-[200px] p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="color-black flex-1 min-w-[200px] p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
           placeholder="Ejemplos separados por ';'"
           value={examples}
           onChange={(e) => setExamples(e.target.value)}
