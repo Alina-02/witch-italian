@@ -1,5 +1,7 @@
 {
   "name": "witch-italian",
+  "author": "Alina Montoliu Mateo",
+  "description": "A desktop app to save my italian vocabulary from the W.I.T.C.H comics.",
   "version": "0.1.0",
   "private": true,
   "homepage": ".",
@@ -53,8 +55,8 @@
     "tailwindcss": "^3.4.17"
   },
   "build": {
-    "appId": "com.cute-pomodoro-app",
-    "productName": "WorkFaster",
+    "appId": "com.witch-italian-app",
+    "productName": "Witch Italian",
     "files": [
       "build/**/*",
       "public/electron.js"

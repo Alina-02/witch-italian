@@ -1,6 +1,12 @@
 import { useMemo, useState } from "react";
 import { useAppStore } from "../store/store";
-import { PLUM } from "../styles/colors";
+import {
+  AMERICAN_PURPLE,
+  MOONSTONE,
+  PLUM,
+  SOFT_PLUM,
+  SOFT_SOFT_PLUM,
+} from "../styles/colors";
 
 export function DictionaryView() {
   const { notes } = useAppStore();
@@ -16,23 +22,29 @@ export function DictionaryView() {
   return (
     <section className="space-y">
       <h2
-        className="text-4xl font-bold pb-3 border-b-2 mb-3 mt-10"
+        className="text-4xl font-bold pb-3 border-b-4 mb-3 mt-10 px-6"
         style={{ borderColor: `${PLUM}` }}
       >
         Dictionary
       </h2>
 
-      <div className="flex flex-row gap-2 items-center justify-center py-4">
+      <div
+        className="p-4 rounded-lg border-4 mx-6 flex flex-row gap-4 items-center"
+        style={{
+          backgroundColor: `${SOFT_PLUM}`,
+          border: `${MOONSTONE}`,
+        }}
+      >
         <input
-          className="px-4 py-2 rounded-full color-black"
-          placeholder="Buscar palabra…"
+          className="px-4 py-2 rounded-lg color-black w-full"
+          placeholder="Search word…"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-        <span>{filtered.length} resultados</span>
+        <span className="text-center">{filtered.length} words</span>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
+      <div className="mx-6 my-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
         {filtered.map((w) => (
           <div
             key={w.id}
@@ -42,7 +54,13 @@ export function DictionaryView() {
               <h3 className="text-lg font-semibold text-gray-800 m-0">
                 {w.original}
               </h3>
-              <span className="bg-blue-100 text-blue-800 text-sm font-medium px-2 py-1 rounded-full">
+              <span
+                style={{
+                  backgroundColor: `${SOFT_SOFT_PLUM}`,
+                  color: `${AMERICAN_PURPLE}`,
+                }}
+                className=" text-sm font-medium px-2 py-1 rounded-full"
+              >
                 {w.english}
               </span>
             </div>

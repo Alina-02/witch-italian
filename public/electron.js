@@ -10,6 +10,7 @@ const DATA_FILE = path.join(app.getPath("userData"), "data.json");
 function createMainWindow() {
   const mainWindow = new BrowserWindow({
     title: "Witch Italian",
+    icon: "./wicon.png",
     width: 1200,
     height: 800,
     webPreferences: {

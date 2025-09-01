@@ -19,42 +19,42 @@ export default function App() {
 
   return (
     <div
-      className="app font-sans  text-white"
-      style={{ backgroundColor: `${AMERICAN_PURPLE}` }}
+      className="app font-sans  bg-white"
+      style={{ color: `${AMERICAN_PURPLE}` }}
     >
       <div
-        className="flex flex-col p-10 border-r-2 gap-5 shadow-md"
+        className="flex flex-col py-10 border-r-4 gap-5 "
         style={{ borderColor: `${PLUM}` }}
       >
         <h2
-          className=" pb-3 border-b-2 w-48 shadow-md"
+          className=" pb-3 border-b-4 w-64 px-5"
           style={{ borderColor: `${PLUM}` }}
         >
           <img src={WitchLogo} alt="Witch logo" />
         </h2>
         <button
           onClick={() => setView("notes")}
-          className="pb-5 border-b-2 shadow-md"
+          className="pb-5 border-b-4 text-lg"
           style={{ borderColor: `${PLUM}` }}
         >
           Notes
         </button>
         <button
           onClick={() => setView("dictionary")}
-          className="pb-5 border-b-2 shadow-md"
+          className="pb-5 border-b-4 text-lg"
           style={{ borderColor: `${PLUM}` }}
         >
           Dictionary
         </button>
         <button
           onClick={() => setView("related")}
-          className="pb-5 border-b-2 shadow-md"
+          className="pb-5 border-b-4 text-lg"
           style={{ borderColor: `${PLUM}` }}
         >
           Groups
         </button>
       </div>
-      <div className="flex flex-col p-10">
+      <div className="flex flex-col py-[51px] w-full">
         {currentView === "notes" && <NotesView />}
         {currentView === "dictionary" && <DictionaryView />}
         {currentView === "related" && <RelatedGroupsView />}

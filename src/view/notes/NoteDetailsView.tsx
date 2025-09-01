@@ -1,6 +1,13 @@
 import { useState } from "react";
 import { AddWordForm } from "../../components/AddWordForm";
 import { useAppStore } from "../../store/store";
+import {
+  AMERICAN_PURPLE,
+  MOONSTONE,
+  PLUM,
+  SOFT_PLUM,
+  SOFT_SOFT_PLUM,
+} from "../../styles/colors";
 
 export function NoteDetailView({ noteId }: { noteId: string }) {
   const { notes, selectNote } = useAppStore();
@@ -14,38 +21,63 @@ export function NoteDetailView({ noteId }: { noteId: string }) {
       w.english.toLowerCase().includes(query.toLowerCase())
   );
 
-  if (!note) return <p>Nota no encontrada</p>;
+  if (!note) return <p>Note not found.</p>;
 
   return (
     <section className="space-y">
-      <h2 className="text-4xl font-bold pb-3 border-b-2 mb-3">{note.title}</h2>
+      <h2
+        className="text-4xl font-bold pb-3 border-b-4 mb-3 mt-10 px-6"
+        style={{ borderColor: `${PLUM}` }}
+      >
+        {note.title}
+      </h2>
       <button
-        className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+        className="my-2 text-white mx-6 px-4 bg-white hover:bg-gray-100  font-semibold py-2 border border-gray-400 rounded-lg shadow"
+        style={{
+          background: `${AMERICAN_PURPLE}`,
+          border: `${PLUM}`,
+        }}
         onClick={() => selectNote(undefined)}
       >
-        Volver
+        Back
       </button>
-      <div className="mt-4 flex flex-col gap-4">
+      <div className="px-6 mt-2 flex flex-col gap-4">
         <AddWordForm noteId={note.id} />
-
-        <input
-          className="p-2 w-full rounded-lg color-black"
-          placeholder="Buscar palabra…"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-
+        <div
+          className="p-4 rounded-lg border-4"
+          style={{
+            backgroundColor: `${SOFT_PLUM}`,
+            borderColor: `${MOONSTONE}`,
+          }}
+        >
+          <input
+            className="p-2 w-full rounded-lg color-black"
+            placeholder="Search word…"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+        </div>
         {filtered?.map((w) => (
           <div
             key={w.id}
             className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow"
           >
-            {/* Fila con palabra y traducción */}
-            <div className="flex flex-wrap gap-2 items-center">
+            <div
+              className="flex flex-wrap gap-2 items-center"
+              style={{
+                color: `${AMERICAN_PURPLE}`,
+              }}
+            >
               <span className="text-lg font-semibold text-gray-800">
                 {w.original}
               </span>
-              <span className="bg-blue-100 text-blue-800 text-sm font-medium px-2 py-1 rounded-full">
+              <span
+                style={{
+                  backgroundColor: `${SOFT_SOFT_PLUM}`,
+                  color: `${AMERICAN_PURPLE}`,
+                }}
+                className="  text-sm font-medium px-2 py-1 rounded-full"
+              >
                 {w.english}
               </span>
             </div>

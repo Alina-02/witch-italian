@@ -21,6 +21,7 @@ export interface AppState {
     english: string,
     groupIds: string[]
   ) => string;
+  updateGroup: (groupId: string, newWordIds: string[]) => void;
 
   save: () => void;
   load: () => Promise<void>;
@@ -78,6 +79,22 @@ export const useAppStore = create<AppState>((set, get) => ({
 
     get().save();
     return wordId;
+  },
+
+  updateGroup: (groupId: string, newWordIds: string[]) => {
+    set((state) => ({
+      related: state.related.map((g) =>
+        g.id === groupId
+          ? {
+              ...g,
+              words: [...g.words, ...newWordIds].filter(
+                (id, index, arr) => arr.indexOf(id) === index
+              ),
+            }
+          : g
+      ),
+    }));
+    get().save();
   },
 
   save: () => {

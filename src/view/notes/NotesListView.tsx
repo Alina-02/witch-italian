@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useAppStore } from "../../store/store";
 import {
-  IGUANA_GREEN,
+  AMERICAN_PURPLE,
   MOONSTONE,
   PLUM,
-  SPACE_CADET,
+  SOFT_PLUM,
 } from "../../styles/colors";
 
 export function NotesListView() {
@@ -20,29 +20,41 @@ export function NotesListView() {
   };
 
   return (
-    <section className="space-y">
+    <section className="w-full">
       <h2
-        className="text-4xl font-bold pb-3 border-b-2 mb-3 mt-10"
+        className="text-4xl font-bold pb-3 border-b-4 mb-3 mt-10 px-6"
         style={{ borderColor: `${PLUM}` }}
       >
         Notes
       </h2>
 
-      <div className="row gap-[12px] items-center w-full py-4">
+      <div className="row gap-[12px] items-center w-full py-2 px-6">
         {!creating && (
           <button
-            className=" hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-full shadow"
-            style={{ background: `${MOONSTONE}`, border: `${IGUANA_GREEN}` }}
+            className="text-white hover:bg-gray-100 w-full font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow"
+            style={{
+              background: `${AMERICAN_PURPLE}`,
+              border: `${PLUM}`,
+            }}
             onClick={() => setCreating(true)}
           >
-            Nueva nota
+            New note
           </button>
         )}
 
         {creating && (
-          <div className="flex row gap-4">
+          <div
+            className="flex flex-col gap-4 rounded-lg p-4 border-4"
+            style={{
+              backgroundColor: `${SOFT_PLUM}`,
+              borderColor: `${MOONSTONE}`,
+            }}
+          >
             <input
-              className="p-3 rounded-full text-black"
+              className="p-3 rounded-lg shadow text-black "
+              style={{
+                border: `${AMERICAN_PURPLE}`,
+              }}
               placeholder="Título de la nota"
               value={newTitle}
               onChange={(e) => setNewTitle(e.target.value)}
@@ -55,37 +67,42 @@ export function NotesListView() {
               }}
               autoFocus
             />
-            <button
-              className=" hover:bg-gray-100 text-gray-800 font-semibold py-2 px-5 border border-gray-400 rounded-full shadow"
-              style={{ background: `${MOONSTONE}`, border: `${IGUANA_GREEN}` }}
-              onClick={handleCreate}
-            >
-              Añadir
-            </button>
-            <button
-              className=" hover:bg-gray-100 text-gray-800 font-semibold py-2 px-5 border border-gray-400 rounded-full shadow"
-              style={{ background: `${MOONSTONE}`, border: `${IGUANA_GREEN}` }}
-              onClick={() => setCreating(false)}
-            >
-              Cancelar
-            </button>
+            <div className="flex flex-row gap-4">
+              <button
+                className="bg-white hover:bg-gray-100 w-full font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow"
+                style={{
+                  color: `${AMERICAN_PURPLE}`,
+                  border: `${PLUM}`,
+                }}
+                onClick={() => setCreating(false)}
+              >
+                Cancel
+              </button>
+              <button
+                className="text-white hover:bg-gray-100 w-full font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow"
+                style={{
+                  background: `${AMERICAN_PURPLE}`,
+                  border: `${PLUM}`,
+                }}
+                onClick={handleCreate}
+              >
+                Add
+              </button>
+            </div>
           </div>
         )}
       </div>
 
-      <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="px-6 my-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {notes.map((note) => (
           <div
             key={note.id}
             className="p-4 bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer"
+            style={{ color: `${AMERICAN_PURPLE}` }}
             onClick={() => selectNote(note.id)}
           >
-            <h2 className="text-lg font-semibold text-gray-800 mb-1">
-              {note.title}
-            </h2>
-            <p className="text-gray-500 text-sm">
-              {note.vocab.length} palabras
-            </p>
+            <h2 className="text-lg font-semibold mb-1">{note.title}</h2>
+            <p className="text-gray-500 text-sm">{note.vocab.length} words</p>
           </div>
         ))}
       </div>

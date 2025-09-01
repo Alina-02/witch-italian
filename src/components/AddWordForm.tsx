@@ -1,6 +1,7 @@
 // AddWordForm.tsx
 import { useState } from "react";
 import { useAppStore } from "../store/store";
+import { AMERICAN_PURPLE, MOONSTONE, PLUM, SOFT_PLUM } from "../styles/colors";
 
 export function AddWordForm({ noteId }: { noteId: string }) {
   const { addWord } = useAppStore();
@@ -19,7 +20,6 @@ export function AddWordForm({ noteId }: { noteId: string }) {
       description: description || undefined,
       examples: examples ? examples.split(";").map((e) => e.trim()) : undefined,
     });
-    // limpiar
     setOriginal("");
     setEnglish("");
     setDescription("");
@@ -27,40 +27,59 @@ export function AddWordForm({ noteId }: { noteId: string }) {
   };
 
   return (
-    <>
+    <div
+      className="rounded-lg flex flex-col gap-4 p-4 border-4"
+      style={{
+        backgroundColor: `${SOFT_PLUM}`,
+        borderColor: `${MOONSTONE}`,
+      }}
+    >
       <div className="flex flex-wrap gap-3 mb-1">
         <input
-          className="color-black flex-1 min-w-[200px] p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-          placeholder="Palabra original"
+          className="rounded-lg shadow color-black flex-1 min-w-[200px] p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#36aebc]"
+          style={{
+            border: `${AMERICAN_PURPLE}`,
+          }}
+          placeholder="Italian word"
           value={original}
           onChange={(e) => setOriginal(e.target.value)}
         />
         <input
-          className="color-black flex-1 min-w-[200px] p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-          placeholder="Traducción al inglés"
+          className="rounded-lg shadow color-black flex-1 min-w-[200px] p-2  border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#36aebc]"
+          style={{
+            border: `${AMERICAN_PURPLE}`,
+          }}
+          placeholder="English word"
           value={english}
           onChange={(e) => setEnglish(e.target.value)}
         />
-        <textarea
-          className="color-black flex-1 min-w-[200px] p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 resize-y"
-          placeholder="Descripción (opcional)"
+        <input
+          className="shadow color-black flex-1 min-w-[200px] p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#36aebc] resize-y"
+          placeholder="Description (optional)"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
         <input
-          className="color-black flex-1 min-w-[200px] p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-          placeholder="Ejemplos separados por ';'"
+          className="rounded-lg shadow color-black flex-1 min-w-[200px] p-2  border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#36aebc]"
+          style={{
+            border: `${AMERICAN_PURPLE}`,
+          }}
+          placeholder="Examples divided by ';'"
           value={examples}
           onChange={(e) => setExamples(e.target.value)}
         />
       </div>
 
       <button
-        className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow mb-4"
+        className="text-white hover:bg-gray-100 w-full font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow"
+        style={{
+          background: `${AMERICAN_PURPLE}`,
+          border: `${PLUM}`,
+        }}
         onClick={handleAdd}
       >
-        ➕ Añadir palabra
+        Add word
       </button>
-    </>
+    </div>
   );
 }
