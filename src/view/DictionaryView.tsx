@@ -21,15 +21,21 @@ export function DictionaryView() {
 
   return (
     <section className="space-y">
-      <h2
-        className="text-4xl font-bold pb-3 border-b-4 mb-3 mt-10 px-6"
-        style={{ borderColor: `${PLUM}` }}
-      >
-        Dictionary
-      </h2>
-
       <div
-        className="p-4 rounded-lg border-4 mx-6 flex flex-row gap-4 items-center"
+        style={{ borderColor: `${PLUM}`, backgroundColor: `${PLUM}` }}
+        className="border-4 border-b-8 mb-3 h-[147px]"
+      >
+        <div className="bg-white rounded-lg flex items-center justify-center w-full h-full">
+          <h2
+            className="font-caveat text-6xl font-bold "
+            style={{ borderColor: `${PLUM}` }}
+          >
+            Dictionary
+          </h2>
+        </div>
+      </div>
+      <div
+        className="p-4 mt-6 rounded-lg border-4 mx-6 flex flex-row gap-4 items-center"
         style={{
           backgroundColor: `${SOFT_PLUM}`,
           border: `${MOONSTONE}`,

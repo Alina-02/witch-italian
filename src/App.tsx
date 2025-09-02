@@ -23,38 +23,60 @@ export default function App() {
       style={{ color: `${AMERICAN_PURPLE}` }}
     >
       <div
-        className="flex flex-col py-10 border-r-4 gap-5 "
-        style={{ borderColor: `${PLUM}` }}
+        className="flex flex-col pb-10 border-r-4"
+        style={{ borderColor: `${PLUM}`, backgroundColor: `${PLUM}` }}
       >
-        <h2
-          className=" pb-3 border-b-4 w-64 px-5"
-          style={{ borderColor: `${PLUM}` }}
+        <div
+          style={{ borderColor: `${PLUM}`, backgroundColor: `${PLUM}` }}
+          className="border-4 border-b-8 px-2 h-[147px]"
         >
-          <img src={WitchLogo} alt="Witch logo" />
-        </h2>
-        <button
-          onClick={() => setView("notes")}
-          className="pb-5 border-b-4 text-lg"
-          style={{ borderColor: `${PLUM}` }}
+          <div className="bg-white rounded-lg flex items-center justify-center w-full h-full">
+            <img src={WitchLogo} alt="Witch logo" className="w-64" />
+          </div>
+        </div>
+        <div
+          style={{ borderColor: `${PLUM}`, backgroundColor: `${PLUM}` }}
+          className="border-4 border-b-8 px-2 h-[90px]"
         >
-          Notes
-        </button>
-        <button
-          onClick={() => setView("dictionary")}
-          className="pb-5 border-b-4 text-lg"
-          style={{ borderColor: `${PLUM}` }}
+          <div className="bg-white rounded-lg flex items-center justify-center w-full h-full">
+            <button
+              onClick={() => setView("notes")}
+              className="font-caveat text-3xl font-bold"
+            >
+              Notes
+            </button>
+          </div>
+        </div>
+        <div
+          style={{ borderColor: `${PLUM}`, backgroundColor: `${PLUM}` }}
+          className="border-4 border-b-8 px-2 h-[90px]"
         >
-          Dictionary
-        </button>
-        <button
-          onClick={() => setView("related")}
-          className="pb-5 border-b-4 text-lg"
-          style={{ borderColor: `${PLUM}` }}
+          <div className="bg-white rounded-lg flex items-center justify-center w-full h-full">
+            <button
+              onClick={() => setView("dictionary")}
+              className="font-caveat text-3xl font-bold"
+              style={{ borderColor: `${PLUM}` }}
+            >
+              Dictionary
+            </button>
+          </div>
+        </div>
+        <div
+          style={{ borderColor: `${PLUM}`, backgroundColor: `${PLUM}` }}
+          className="border-4 border-b-8 px-2 h-[90px]"
         >
-          Groups
-        </button>
+          <div className="bg-white rounded-lg flex items-center justify-center w-full h-full">
+            <button
+              onClick={() => setView("related")}
+              className="font-caveat text-3xl font-bold"
+              style={{ borderColor: `${PLUM}` }}
+            >
+              Groups
+            </button>
+          </div>
+        </div>
       </div>
-      <div className="flex flex-col py-[51px] w-full">
+      <div className="flex flex-col w-full">
         {currentView === "notes" && <NotesView />}
         {currentView === "dictionary" && <DictionaryView />}
         {currentView === "related" && <RelatedGroupsView />}

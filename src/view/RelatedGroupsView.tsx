@@ -73,12 +73,19 @@ export function RelatedGroupsView() {
 
   return (
     <section>
-      <h2
-        className="text-4xl font-bold pb-3 border-b-4 mt-10 px-6 mb-3"
-        style={{ borderColor: `${PLUM}` }}
+      <div
+        style={{ borderColor: `${PLUM}`, backgroundColor: `${PLUM}` }}
+        className="border-4 border-b-8 mb-3 h-[147px]"
       >
-        Groups of words
-      </h2>
+        <div className="bg-white rounded-lg flex items-center justify-center w-full h-full">
+          <h2
+            className="font-caveat text-6xl font-bold"
+            style={{ borderColor: `${PLUM}` }}
+          >
+            Groups of words
+          </h2>
+        </div>
+      </div>
       <div className="row gap-[12px] items-center w-full py-2 px-6">
         {!showForm && (
           <button

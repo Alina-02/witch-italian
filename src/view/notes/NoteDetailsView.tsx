@@ -25,12 +25,19 @@ export function NoteDetailView({ noteId }: { noteId: string }) {
 
   return (
     <section className="space-y">
-      <h2
-        className="text-4xl font-bold pb-3 border-b-4 mb-3 mt-10 px-6"
-        style={{ borderColor: `${PLUM}` }}
+      <div
+        style={{ borderColor: `${PLUM}`, backgroundColor: `${PLUM}` }}
+        className="border-4 border-b-8 mb-3 h-[147px]"
       >
-        {note.title}
-      </h2>
+        <div className="bg-white rounded-lg flex items-center justify-center w-full h-full">
+          <h2
+            className="font-caveat text-6xl font-bold"
+            style={{ borderColor: `${PLUM}` }}
+          >
+            {note.title}
+          </h2>
+        </div>
+      </div>
       <button
         className="my-2 text-white mx-6 px-4 bg-white hover:bg-gray-100  font-semibold py-2 border border-gray-400 rounded-lg shadow"
         style={{

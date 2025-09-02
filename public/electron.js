@@ -27,7 +27,6 @@ function createMainWindow() {
   });
 
   mainWindow.loadURL(startUrl); // load app in electron window
-  mainWindow.webContents.openDevTools();
 
   ipcMain.on("close-app", () => {
     app.quit();
