@@ -20,20 +20,21 @@ export function NotesListView() {
   };
 
   return (
-    <section className="w-full h-full">
+    <div className="flex flex-col h-screen">
       <div
         style={{ borderColor: `${PLUM}`, backgroundColor: `${PLUM}` }}
-        className="border-4 border-b-8 h-[147px]"
+        className="border-l-4 border-t-8 border-b-8 border-r-8 min-h-[147px]"
       >
         <div className="bg-white rounded-lg flex items-center justify-center w-full h-full">
           <h2 className="font-caveat text-6xl font-bold">NOTES</h2>
         </div>
       </div>
       <div
+        id="notes-div"
         style={{ borderColor: `${PLUM}`, backgroundColor: `${PLUM}` }}
-        className="border-4 border-b-8 mb-3 h-full"
+        className="border-l-4 border-t-4 border-b-8 border-r-8 flex-grow "
       >
-        <div className="bg-white rounded-lg flexw-full h-full pt-3">
+        <div className="bg-white rounded-lg flex flex-col w-full h-full pt-3 overflow-y-auto pr-2 scrollbar-custom mb-2">
           <div className="row gap-[12px] items-center w-full py-2 px-6">
             {!creating && (
               <button
@@ -116,6 +117,6 @@ export function NotesListView() {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

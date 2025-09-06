@@ -28,7 +28,7 @@ export default function App() {
       >
         <div
           style={{ borderColor: `${PLUM}`, backgroundColor: `${PLUM}` }}
-          className="border-4 border-b-8 px-2 h-[147px]"
+          className="border-l-4 border-t-8 border-b-8 border-r-4 px-2 h-[147px]"
         >
           <div className="bg-white rounded-lg flex items-center justify-center w-full h-full">
             <img src={WitchLogo} alt="Witch logo" className="w-64" />

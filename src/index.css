@@ -12,3 +12,29 @@
     src: url(./assets/Caveat/static/Caveat-Regular.ttf) format("ttf");
   }
 }
+
+/* Custom scrollbar */
+.scrollbar-custom {
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: #6b21a8 #f3e8ff;
+}
+
+/* For Chrome, Edge, Safari */
+.scrollbar-custom::-webkit-scrollbar {
+  width: 16px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: #f3e8ff;
+  border-radius: 9999px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background-color: #6b21a8;
+  border-radius: 9999px;
+  border: 2px solid #f3e8ff;
+}
+
+.scrollbar-custom::-webkit-scrollbar-button {
+  display: none;
+}
