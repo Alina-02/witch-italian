@@ -45,7 +45,7 @@ export function DictionaryView() {
             className="p-4 mt-3 rounded-lg border-4 mx-6 flex flex-row gap-4 items-center"
             style={{
               backgroundColor: `${SOFT_PLUM}`,
-              border: `${MOONSTONE}`,
+              borderColor: `${MOONSTONE}`,
             }}
           >
             <input

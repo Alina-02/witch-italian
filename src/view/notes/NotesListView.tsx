@@ -25,8 +25,15 @@ export function NotesListView() {
         style={{ borderColor: `${PLUM}`, backgroundColor: `${PLUM}` }}
         className="border-l-4 border-t-8 border-b-8 border-r-8 min-h-[147px]"
       >
-        <div className="bg-white rounded-lg flex items-center justify-center w-full h-full">
-          <h2 className="font-caveat text-6xl font-bold">NOTES</h2>
+        <div className="bg-white rounded-lg flex items-center justify-center w-full h-full ">
+          <h2
+            className="font-caveat text-6xl font-bold bg-clip-text text-transparent bg-cover bg-center"
+            style={{
+              color: `${AMERICAN_PURPLE}`,
+            }}
+          >
+            NOTES
+          </h2>
         </div>
       </div>
       <div
