@@ -8,6 +8,7 @@ import { NotesView } from "./view/notes/NotesView";
 
 import WitchLogo from "./assets/witchlogo.png";
 import { AMERICAN_PURPLE, PLUM, SPACE_CADET } from "./styles/colors";
+import LearnView from "./view/LearnView";
 
 export default function App() {
   const { load, currentView, setView } = useAppStore();
@@ -75,11 +76,26 @@ export default function App() {
             </button>
           </div>
         </div>
+        <div
+          style={{ borderColor: `${PLUM}`, backgroundColor: `${PLUM}` }}
+          className="border-4 border-b-8 px-2 h-[90px]"
+        >
+          <div className="bg-white rounded-lg flex items-center justify-center w-full h-full">
+            <button
+              onClick={() => setView("learn")}
+              className="font-caveat text-3xl font-bold"
+              style={{ borderColor: `${PLUM}` }}
+            >
+              Learn
+            </button>
+          </div>
+        </div>
       </div>
       <div className="flex flex-col w-full">
         {currentView === "notes" && <NotesView />}
         {currentView === "dictionary" && <DictionaryView />}
         {currentView === "related" && <RelatedGroupsView />}
+        {currentView === "learn" && <LearnView />}
       </div>
     </div>
   );

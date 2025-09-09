@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { Note, RelatedGroup, VocabWord } from "../types";
 
 // store.ts
-type View = "notes" | "dictionary" | "related";
+type View = "notes" | "dictionary" | "related" | "learn";
 
 export interface AppState {
   notes: Note[];
