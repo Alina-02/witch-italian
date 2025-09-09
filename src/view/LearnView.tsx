@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-  AMERICAN_PURPLE,
-  ERROR,
-  IGUANA_GREEN,
-  PLUM,
-  SOFT_SOFT_PLUM,
-} from "../styles/colors";
+import { AMERICAN_PURPLE, ERROR, IGUANA_GREEN, PLUM } from "../styles/colors";
 import { useAppStore } from "../store/store";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -19,19 +13,18 @@ const GamesView = () => {
   const selectedNote = notes.find((n) => n.id === selectedNoteId);
 
   const getRandomWord = () => {
-    if (!selectedNote || selectedNote.vocab.length === 0) return null;
+    console.log("Selected note ", selectNote);
+    if (!selectedNote || selectedNote.vocab.length === 0) {
+      console.log("No random word");
+      return null;
+    }
     const randomIndex = Math.floor(Math.random() * selectedNote.vocab.length);
     return selectedNote.vocab[randomIndex];
   };
 
-  const startQuiz = () => {
-    const word = getRandomWord();
-    setRandomWord(word);
-    setAnswer("");
-  };
-
   const handleSelect = (noteId: string) => {
     const note = notes.find((n) => n.id === noteId);
+    setSelectedNoteId(noteId);
 
     if (note && note.vocab.length > 0) {
       const randIndex = Math.floor(Math.random() * note.vocab.length);
@@ -54,10 +47,11 @@ const GamesView = () => {
           color: "#06451a",
         },
       });
-      setTimeout(() => {
-        const newWord = getRandomWord();
-        setRandomWord(newWord);
-      }, 800);
+
+      const newWord = getRandomWord();
+      console.log("New word:", newWord);
+      setRandomWord(newWord);
+      setAnswer("");
     } else {
       toast(`Wrong. Correct answer: ${randomWord.english}`, {
         style: {
@@ -67,6 +61,7 @@ const GamesView = () => {
           color: "#800000",
         },
       });
+      setAnswer("");
     }
   };
 
