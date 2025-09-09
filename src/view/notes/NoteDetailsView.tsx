@@ -6,12 +6,14 @@ import {
   MOONSTONE,
   PLUM,
   SOFT_PLUM,
-  SOFT_SOFT_PLUM,
 } from "../../styles/colors";
+import WordCard from "../../components/WordCard";
 
 export function NoteDetailView({ noteId }: { noteId: string }) {
   const { notes, selectNote } = useAppStore();
   const note = notes.find((n) => n.id === noteId);
+
+  const [isEditing, setIsEditing] = useState<boolean>(false);
 
   const [query, setQuery] = useState("");
 
@@ -75,44 +77,7 @@ export function NoteDetailView({ noteId }: { noteId: string }) {
               className="flex flex-col gap-4 flex-grow overflow-y-auto pr-2 scrollbar-custom mb-2"
             >
               {filtered?.map((w) => (
-                <div
-                  key={w.id}
-                  className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow"
-                >
-                  <div
-                    className="flex flex-wrap gap-2 items-center"
-                    style={{
-                      color: `${AMERICAN_PURPLE}`,
-                    }}
-                  >
-                    <span className="text-lg font-semibold text-gray-800">
-                      {w.original}
-                    </span>
-                    <span
-                      style={{
-                        backgroundColor: `${SOFT_SOFT_PLUM}`,
-                        color: `${AMERICAN_PURPLE}`,
-                      }}
-                      className="  text-sm font-medium px-2 py-1 rounded-full"
-                    >
-                      {w.english}
-                    </span>
-                  </div>
-
-                  {w.description && (
-                    <p className="text-gray-500 mt-2 text-sm">
-                      {w.description}
-                    </p>
-                  )}
-
-                  {w.examples?.length ? (
-                    <ul className="list-disc list-inside mt-2 ml-4 text-gray-600 text-sm">
-                      {w.examples.map((ex, i) => (
-                        <li key={i}>{ex}</li>
-                      ))}
-                    </ul>
-                  ) : null}
-                </div>
+                <WordCard word={w} note={note} />
               ))}
             </div>
           </div>

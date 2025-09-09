@@ -1,30 +1,61 @@
 // AddWordForm.tsx
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAppStore } from "../store/store";
 import { AMERICAN_PURPLE, MOONSTONE, PLUM, SOFT_PLUM } from "../styles/colors";
 
 export function AddWordForm({ noteId }: { noteId: string }) {
-  const { addWord } = useAppStore();
+  const { addWord, editWord, selectedWordToEdit, selectWordToEdit } =
+    useAppStore();
 
   const [original, setOriginal] = useState("");
   const [english, setEnglish] = useState("");
   const [description, setDescription] = useState("");
   const [examples, setExamples] = useState("");
 
-  const handleAdd = () => {
-    if (!original || !english) return;
-    addWord(noteId, {
-      id: crypto.randomUUID(),
-      original,
-      english,
-      description: description || undefined,
-      examples: examples ? examples.split(";").map((e) => e.trim()) : undefined,
-    });
+  const handleSubmit = () => {
+    if (!original.trim() || !english.trim()) return;
+
+    if (selectedWordToEdit) {
+      editWord(noteId, selectedWordToEdit.id, {
+        original,
+        english,
+        description: description || undefined,
+        examples: examples
+          ? examples.split(";").map((e) => e.trim())
+          : undefined,
+      });
+      selectWordToEdit(undefined);
+    } else {
+      addWord(noteId, {
+        id: crypto.randomUUID(),
+        original,
+        english,
+        description: description || undefined,
+        examples: examples
+          ? examples.split(";").map((e) => e.trim())
+          : undefined,
+      });
+    }
+
     setOriginal("");
     setEnglish("");
     setDescription("");
     setExamples("");
   };
+
+  useEffect(() => {
+    if (selectedWordToEdit) {
+      setOriginal(selectedWordToEdit.original);
+      setEnglish(selectedWordToEdit.english);
+      setDescription(selectedWordToEdit.description || "");
+      setExamples(selectedWordToEdit.examples?.join("; ") || "");
+    } else {
+      setOriginal("");
+      setEnglish("");
+      setDescription("");
+      setExamples("");
+    }
+  }, [selectedWordToEdit]);
 
   return (
     <div
@@ -70,16 +101,26 @@ export function AddWordForm({ noteId }: { noteId: string }) {
         />
       </div>
 
-      <button
-        className="text-white hover:bg-gray-100 w-full font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow"
-        style={{
-          background: `${AMERICAN_PURPLE}`,
-          border: `${PLUM}`,
-        }}
-        onClick={handleAdd}
-      >
-        Add word
-      </button>
+      <div className="flex gap-3">
+        {selectedWordToEdit && (
+          <button
+            className="bg-white hover:bg-gray-100 w-full font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow"
+            onClick={() => selectWordToEdit(undefined)}
+          >
+            Cancel
+          </button>
+        )}
+        <button
+          className="text-white hover:bg-gray-100 w-full font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow"
+          style={{
+            background: `${AMERICAN_PURPLE}`,
+            border: `${PLUM}`,
+          }}
+          onClick={handleSubmit}
+        >
+          {selectedWordToEdit ? "Update word" : "Add word"}
+        </button>
+      </div>
     </div>
   );
 }

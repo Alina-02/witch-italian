@@ -11,9 +11,18 @@ export interface AppState {
   currentView: View;
   setView: (v: View) => void;
 
-  addNote: (title: string) => void;
-  addWord: (noteId: string, word: VocabWord) => void;
   selectNote: (id?: string) => void;
+  addNote: (title: string) => void;
+  editNote: (id: string, newTitle: string) => void;
+  deleteNote: (id: string) => void;
+
+  addWord: (noteId: string, word: VocabWord) => void;
+  editWord: (
+    noteId: string,
+    wordId: string,
+    updated: Partial<VocabWord>
+  ) => void;
+  deleteWord: (noteId: string, wordId: string) => void;
 
   addRelatedGroup: (title: string, wordIds?: string[]) => string;
   addWordToGroup: (
@@ -25,11 +34,16 @@ export interface AppState {
 
   save: () => void;
   load: () => Promise<void>;
+
+  selectedWordToEdit?: VocabWord;
+  selectWordToEdit: (word?: VocabWord) => void;
 }
 
 export const useAppStore = create<AppState>((set, get) => ({
   notes: [],
   related: [],
+  selectedWordToEdit: undefined,
+
   selectedNoteId: undefined,
   currentView: "notes",
   setView: (v) => set({ currentView: v }),
@@ -40,6 +54,20 @@ export const useAppStore = create<AppState>((set, get) => ({
     get().save();
   },
 
+  editNote: (id, newTitle) =>
+    set((state) => ({
+      notes: state.notes.map((n) =>
+        n.id === id ? { ...n, title: newTitle } : n
+      ),
+    })),
+
+  deleteNote: (id) =>
+    set((state) => ({
+      notes: state.notes.filter((n) => n.id !== id),
+      selectedNoteId:
+        state.selectedNoteId === id ? undefined : state.selectedNoteId,
+    })),
+
   addWord: (noteId, word) => {
     set((state) => ({
       notes: state.notes.map((n) =>
@@ -48,6 +76,29 @@ export const useAppStore = create<AppState>((set, get) => ({
     }));
     get().save();
   },
+
+  editWord: (noteId, wordId, updated) =>
+    set((state) => ({
+      notes: state.notes.map((n) =>
+        n.id === noteId
+          ? {
+              ...n,
+              vocab: n.vocab.map((w) =>
+                w.id === wordId ? { ...w, ...updated } : w
+              ),
+            }
+          : n
+      ),
+    })),
+
+  deleteWord: (noteId, wordId) =>
+    set((state) => ({
+      notes: state.notes.map((n) =>
+        n.id === noteId
+          ? { ...n, vocab: n.vocab.filter((w) => w.id !== wordId) }
+          : n
+      ),
+    })),
 
   selectNote: (id) => set({ selectedNoteId: id }),
 
@@ -116,4 +167,6 @@ export const useAppStore = create<AppState>((set, get) => ({
       console.error("Error cargando datos:", err);
     }
   },
+
+  selectWordToEdit: (word) => set(() => ({ selectedWordToEdit: word })),
 }));

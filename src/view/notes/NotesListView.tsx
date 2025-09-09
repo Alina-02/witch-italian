@@ -6,6 +6,7 @@ import {
   PLUM,
   SOFT_PLUM,
 } from "../../styles/colors";
+import NoteCard from "../../components/NoteCard";
 
 export function NotesListView() {
   const { notes, addNote, selectNote } = useAppStore();
@@ -109,17 +110,7 @@ export function NotesListView() {
 
           <div className="px-6 my-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {notes.map((note) => (
-              <div
-                key={note.id}
-                className="p-4 bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer"
-                style={{ color: `${AMERICAN_PURPLE}` }}
-                onClick={() => selectNote(note.id)}
-              >
-                <h2 className="text-lg font-semibold mb-1">{note.title}</h2>
-                <p className="text-gray-500 text-sm">
-                  {note.vocab.length} words
-                </p>
-              </div>
+              <NoteCard note={note} selectNote={selectNote} />
             ))}
           </div>
         </div>
