@@ -13,9 +13,7 @@ const GamesView = () => {
   const selectedNote = notes.find((n) => n.id === selectedNoteId);
 
   const getRandomWord = () => {
-    console.log("Selected note ", selectNote);
     if (!selectedNote || selectedNote.vocab.length === 0) {
-      console.log("No random word");
       return null;
     }
     const randomIndex = Math.floor(Math.random() * selectedNote.vocab.length);
@@ -49,7 +47,6 @@ const GamesView = () => {
       });
 
       const newWord = getRandomWord();
-      console.log("New word:", newWord);
       setRandomWord(newWord);
       setAnswer("");
     } else {
